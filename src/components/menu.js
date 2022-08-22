@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { navLinks } from '@utils/config'
 import { KEY_CODES } from '@utils'
 import useOnClickOutside from '@hooks/useOnClickOutside'
+import pdf from '../assets/resume.pdf'
 
 const StyledMenu = styled.div`
   display: none;
@@ -284,13 +285,15 @@ const Menu = () => {
               </ol>
             )}
 
-            <Link
+            <a
               onClick={() => setMenuOpen(false)}
-              to="contact"
+              href={pdf}
+              target={'_blank'}
+              rel="noreferrer"
               className="resume-link"
             >
-              Contact
-            </Link>
+              Resume
+            </a>
           </nav>
         </StyledSidebar>
       </div>

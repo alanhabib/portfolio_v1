@@ -181,7 +181,7 @@ const DATA = [
     company: 'Quinyx',
     title: 'Frontend Engineer',
     text: [
-      "Developing a SaaS platform with React/TypeScript that are being used of many big companies such as Mc'Donalds, Burger King, SATS and more. ",
+      "Developing a SaaS platform with React/TypeScript that is being used by many big companies, such as Mc'Donalds, Burger King, SATS and more",
       'Working with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, React, Lokalise and Storybook. We use these frontend development tools to build complex scheduling solutions and exceptional digital experiences.',
       'Communicate with multi-disciplinary teams of engineers, designers and product managers on a daily basis',
     ],

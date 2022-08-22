@@ -9,6 +9,7 @@ import useScrollDirection from '@hooks/useScrollDirection'
 import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion'
 import { Menu } from '@components'
 import AnimatedCircle from './animations/AnimatedCircle'
+import pdf from '../assets/resume.pdf'
 
 const StyledHeader = styled.header`
   ${({ theme }) => theme?.mixins?.flexBetween};
@@ -132,8 +133,6 @@ const CircleText = styled.div`
   color: var(--peach);
 `
 
-const UnderlineLink = styled.li``
-
 const Nav = ({ isHome }) => {
   const [isMounted, setIsMounted] = useState(!isHome)
   const scrollDirection = useScrollDirection('down')
@@ -179,9 +178,9 @@ const Nav = ({ isHome }) => {
   )
 
   const ResumeLink = (
-    <Link className="resume-button" to="contact">
-      Contact
-    </Link>
+    <a href={pdf} className="resume-button" target={'_blank'} rel="noreferrer">
+      Resume
+    </a>
   )
 
   return (
