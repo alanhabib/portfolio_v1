@@ -7,9 +7,11 @@ import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import profile from '../../images/alanhabib.jpeg'
 import ParticlesAnimation from '../animations/ParticlesAnimation/Particles'
 import AnimatedLetters from '../animations/AnimatedLetters'
+import StageCube from '../animations/StageCube'
 
 const StyledAboutSection = styled.section`
   // max-width: 900px;
+  height: 100vh;
   .inner {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -50,7 +52,7 @@ const StyledText = styled.div`
 `
 const StyledPic = styled.div`
   position: relative;
-  max-width: 300px;
+  // max-width: 300px;
 
   @media (max-width: 768px) {
     margin: 50px auto 0;
@@ -138,7 +140,6 @@ const About = () => {
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
-      <ParticlesAnimation />
       <h2 className="numbered-heading">
         <AnimatedLetters strArray={'About me'.split('')} idx={15} />
       </h2>
@@ -171,9 +172,11 @@ const About = () => {
           </ul>
         </StyledText>
         <StyledPic>
-          <div className="wrapper">
+          <StageCube />
+
+          {/* <div className="wrapper">
             <img src={profile} alt="profile" className="img" />
-          </div>
+          </div> */}
         </StyledPic>
       </div>
     </StyledAboutSection>

@@ -30,23 +30,24 @@ to {
 }`
 
 const StageCubeCont = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
   top: 0;
   padding-top: 18%;
   margin-left: 0;
-  position: absolute;
+  // position: absolute;
   right: 0;
-  overflow: hidden;
+  // overflow: hidden;
 `
 const CubeSpinner = styled.div`
   animation-name: ${spincube};
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  animation-duration: 12s;
+  animation-duration: 28s;
   transform-style: preserve-3d;
   transform-origin: 100px 100px 0;
   margin-left: calc(50% - 100px);
+  position: relative;
 
   div {
     position: absolute;

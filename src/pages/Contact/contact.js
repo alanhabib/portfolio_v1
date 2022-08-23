@@ -5,12 +5,12 @@ import sr from '../../utils/sr'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import AnimatedLetters from '../../components/animations/AnimatedLetters'
 import { FaHandPeace } from 'react-icons/fa'
+import ParticlesAnimation from '../../components/animations/ParticlesAnimation/Particles'
 
 const StyledContactSection = styled.section`
-  max-width: 600px;
+  // max-width: 600px;
   margin: 0 auto 100px;
   text-align: center;
-
   @media (max-width: 768px) {
     margin: 0 auto 50px;
   }
@@ -57,6 +57,7 @@ const Contact = () => {
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
+      <ParticlesAnimation />
       <h2 className="numbered-heading overline">What’s Next?</h2>
       <h2 className="title">
         <AnimatedLetters strArray={'Get In Touch'.split('')} idx={15} />
