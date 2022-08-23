@@ -11,7 +11,11 @@ import StageCube from '../animations/StageCube'
 
 const StyledAboutSection = styled.section`
   // max-width: 900px;
-  height: 100vh;
+  height: 70vh;
+  @media (max-width: 768px) {
+    height: 100vh;
+    margin-bottom: 120px;
+  }
   .inner {
     display: grid;
     grid-template-columns: 3fr 2fr;

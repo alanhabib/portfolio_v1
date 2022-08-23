@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Layout, Hero, About, Jobs, Featured } from '../components'
+import Cat from '../components/animations/Cat'
 import Contact from './Contact/contact'
 
 const StyledMainContainer = styled.main`
@@ -22,3 +23,7 @@ const Home = ({ location }) => (
 )
 
 export default Home
+
+{
+  /* <Cat /> */
+}
