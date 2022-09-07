@@ -62,14 +62,14 @@ const Hero = () => {
   const one = <h1>Hi, my name is</h1>
   const two = (
     <BlobAnimation
-      className="big-heading"
+      className='big-heading'
       idx={10}
-      strArray={'Alan Habib'.split('')}
+      strArray={'Alan H.'.split('')}
     />
   )
   const three = (
-    <h3 className="big-heading">
-      <FontAnimation copy={'I do Web Development'.split('')} role="heading" />
+    <h3 className='big-heading'>
+      <FontAnimation copy={'I do Web Development'.split('')} role='heading' />
     </h3>
   )
   const four = (
@@ -78,7 +78,7 @@ const Hero = () => {
         I’m a frontend developer specializing in building exceptional digital
         experiences. Currently, I’m focused on improving and working on a SaaS
         application at{' '}
-        <a href="https://quinyx.com/" target="_blank" rel="noreferrer">
+        <a href='https://quinyx.com/' target='_blank' rel='noreferrer'>
           Quinyx
         </a>
         .
@@ -87,9 +87,9 @@ const Hero = () => {
       <p>
         Apart from work I also menthor new developers through{' '}
         <a
-          href="https://calendly.com/alanhabib"
-          target="_blank"
-          rel="noreferrer"
+          href='https://calendly.com/alanhabib'
+          target='_blank'
+          rel='noreferrer'
         >
           Calendly
         </a>{' '}
@@ -114,7 +114,7 @@ const Hero = () => {
         <TransitionGroup component={null}>
           {isMounted &&
             items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
+              <CSSTransition key={i} classNames='fadeup' timeout={loaderDelay}>
                 <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
               </CSSTransition>
             ))}
