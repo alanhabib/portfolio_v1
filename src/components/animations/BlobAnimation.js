@@ -22,11 +22,15 @@ const BounceAnimation = styled.h2`
 `
 
 function Bounce({ strArray, className }) {
-  return strArray.map((char, i) => (
-    <BounceAnimation className={className} key={char + i}>
-      {char}
-    </BounceAnimation>
-  ))
+  return (
+    <div>
+      {strArray.map((char, i) => (
+        <BounceAnimation className={className} key={char + i}>
+          {char}
+        </BounceAnimation>
+      ))}
+    </div>
+  )
 }
 
 export default Bounce

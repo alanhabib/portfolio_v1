@@ -15,6 +15,7 @@ import {
   FaCloudDownloadAlt,
   FaRegCalendarAlt,
   FaAws,
+  FaRegEnvelope,
 } from 'react-icons/fa'
 
 const Icon = ({ name }) => {
@@ -23,6 +24,8 @@ const Icon = ({ name }) => {
       return <FaApple />
     case 'Aws':
       return <FaAws />
+    case 'Envelope':
+      return <FaRegEnvelope />
     case 'Bookmark':
       return <FaBookmark />
     case 'Calendly':

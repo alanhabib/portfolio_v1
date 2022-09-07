@@ -1,89 +1,183 @@
-import React from 'react'
+import React, { useState } from 'react'
+import FormSignup from './FormSignup'
+import FormSuccess from './FormSuccess'
+import styled from 'styled-components'
 
+const FormContainer = styled.div`
+  .form-container {
+    margin: 100px auto;
+    width: 1000px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    border-radius: 10px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 2%;
+    right: 3%;
+    font-size: 1.5rem;
+    z-index: 1;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .form-content-left {
+    background: linear-gradient(
+      90deg,
+      rgb(39, 176, 255) 0%,
+      rgb(0, 232, 236) 100%
+    );
+    border-radius: 10px 0 0 10px;
+    position: relative;
+  }
+
+  .form-img {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-img-2 {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-success {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 80px;
+    color: #fff;
+  }
+
+  .form-content-right {
+    border-radius: 0 10px 10px 0;
+    position: relative;
+    background: linear-gradient(
+      90deg,
+      rgb(40, 40, 40) 0%,
+      rgb(17, 17, 17) 100%
+    );
+  }
+
+  .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form h1 {
+    font-size: 1rem;
+    text-align: start;
+    width: 80%;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .form-inputs {
+    margin-bottom: 0.5rem;
+    width: 80%;
+  }
+
+  .form-inputs p {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+
+  .form-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .form-input {
+    display: block;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 2px;
+    height: 40px;
+    width: 100%;
+    border: none;
+  }
+
+  .form-input::placeholder {
+    color: #595959;
+    font-size: 12px;
+  }
+
+  .form-input-btn {
+    width: 80%;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      rgb(39, 176, 255) 0%,
+      rgb(0, 232, 236) 100%
+    );
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .form-input-btn:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg,
+      rgb(39, 143, 255) 0%,
+      rgb(12, 99, 250) 100%
+    );
+    transition: all 0.4s ease-out;
+  }
+
+  .form-input-login {
+    font-size: 0.8rem;
+    margin-top: 10px;
+    color: #fff;
+    width: 80%;
+    text-align: center;
+  }
+
+  .form-input-login a {
+    text-decoration: none;
+    color: #27cdff;
+    font-weight: 600;
+  }
+`
 const Form = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  function submitForm() {
+    setIsSubmitted(true)
+  }
   return (
-    <div class="wrapper">
-      <form class="signup">
-        <fieldset class="signup__field signup__field--name">
-          <legend class="signup__field__header">Name</legend>
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--firstname"
-            placeholder="First"
-            aria-label="First Name"
-          />
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--firstname"
-            placeholder="Last"
-            aria-label="Last Name"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--username">
-          <legend class="signup__field__header">Choose your username</legend>
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--username"
-            aria-label="Username"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--password">
-          <legend class="signup__field__header">Create a password</legend>
-          <input
-            type="password"
-            class="signup__field__input signup__field__input--password"
-            aria-label="Password"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--confirm-password">
-          <legend class="signup__field__header">Confirm your password</legend>
-          <input
-            type="password"
-            class="signup__field__input signup__field__input--confirm-password"
-            aria-label="Confirm Password"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--birthday">
-          <legend class="signup__field__header">Birthday</legend>
-          <div class="signup__field__selection">Month</div>
-          <input
-            type="hidden"
-            class="signup__field__input signup__field__input--birth-month"
-            aria-label="Month"
-          />
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--birth-day"
-            placeholder="Day"
-            aria-label="Day"
-          />
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--birth-year"
-            placeholder="Year"
-            aria-label="Year"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--phone">
-          <legend class="signup__field__header">Mobile phone</legend>
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--phone"
-            aria-label="Phone"
-          />
-        </fieldset>
-        <fieldset class="signup__field signup__field--current-email">
-          <legend class="signup__field__header">
-            Your current email address
-          </legend>
-          <input
-            type="text"
-            class="signup__field__input signup__field__input--current-email"
-            aria-label="Email"
-          />
-        </fieldset>
-      </form>
-    </div>
+    <FormContainer className="form-container">
+      <span className="close-btn">×</span>
+      <div className="form-content-left">
+        <img className="form-img" src="img/img-2.svg" alt="spaceship" />
+      </div>
+      {!isSubmitted ? <FormSignup submitForm={submitForm} /> : <FormSuccess />}
+    </FormContainer>
   )
 }
 

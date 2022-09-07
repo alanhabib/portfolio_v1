@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { socialMedia } from "../utils/config";
-import Side from "./side";
-import Icon from "./icons/icon";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { socialMedia } from '../utils/config'
+import Side from './side'
+import Icon from './icons/icon'
 
 const StyledSocialList = styled.ul`
   display: flex;
@@ -13,14 +13,14 @@ const StyledSocialList = styled.ul`
   padding: 0;
   list-style: none;
 
-  &:after {
-    content: "";
-    display: block;
-    width: 1px;
-    height: 90px;
-    margin: 0 auto;
-    background-color: var(--light-slate);
-  }
+  //&:after {
+  //  content: "";
+  //  display: block;
+  //  width: 1px;
+  //  height: 90px;
+  //  margin: 0 auto;
+  //  background-color: var(--light-slate);
+  //}
 
   li {
     &:last-of-type {
@@ -41,25 +41,25 @@ const StyledSocialList = styled.ul`
       }
     }
   }
-`;
+`
 
 const Social = ({ isHome }) => (
-  <Side isHome={true} orientation="right">
+  <Side isHome={true} orientation='right'>
     <StyledSocialList>
       {socialMedia &&
         socialMedia?.map(({ url, name }, i) => (
           <li key={i}>
-            <a href={url} aria-label={name} target="_blank" rel="noreferrer">
+            <a href={url} aria-label={name} target='_blank' rel='noreferrer'>
               <Icon name={name} />
             </a>
           </li>
         ))}
     </StyledSocialList>
   </Side>
-);
+)
 
 Social.propTypes = {
   isHome: PropTypes.bool,
-};
+}
 
-export default Social;
+export default Social

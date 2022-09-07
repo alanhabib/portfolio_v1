@@ -34,9 +34,9 @@ const StyledHeader = styled.header`
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    ${(props) =>
-      props.scrollDirection === 'up' &&
-      !props.scrolledToTop &&
+    ${({ scrollDirection, scrolledToTop }) =>
+      scrollDirection === 'up' &&
+      !scrolledToTop &&
       css`
         height: var(--nav-scroll-height);
         transform: translateY(0px);
@@ -44,9 +44,9 @@ const StyledHeader = styled.header`
         box-shadow: 0 10px 30px -10px var(--navy-shadow);
       `};
 
-    ${(props) =>
-      props.scrollDirection === 'down' &&
-      !props.scrolledToTop &&
+    ${({ scrollDirection, scrolledToTop }) =>
+      scrollDirection === 'down' &&
+      !scrolledToTop &&
       css`
         height: var(--nav-scroll-height);
         transform: translateY(calc(var(--nav-scroll-height) * -1));

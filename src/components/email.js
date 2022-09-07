@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { email } from "../utils/config";
-import Side from "./side";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { email } from '../utils/config'
+import Side from './side'
 
 const StyledLinkWrapper = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const StyledLinkWrapper = styled.div`
   position: relative;
 
   &:after {
-    content: "";
+    content: '';
     display: block;
     width: 1px;
     height: 90px;
@@ -33,7 +33,7 @@ const StyledLinkWrapper = styled.div`
       transform: translateY(-3px);
     }
   }
-`;
+`
 
 const Email = ({ isHome }) => (
   <Side isHome={isHome} orientation="left">
@@ -41,10 +41,10 @@ const Email = ({ isHome }) => (
       <a href={`mailto:${email}`}>{email}</a>
     </StyledLinkWrapper>
   </Side>
-);
+)
 
 Email.propTypes = {
   isHome: PropTypes.bool,
-};
+}
 
-export default Email;
+export default Email

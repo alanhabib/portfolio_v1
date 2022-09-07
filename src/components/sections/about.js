@@ -14,7 +14,7 @@ const StyledAboutSection = styled.section`
   height: 70vh;
   @media (max-width: 768px) {
     height: 100vh;
-    margin-bottom: 120px;
+    margin-bottom: 160px;
   }
   .inner {
     display: grid;

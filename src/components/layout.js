@@ -1,22 +1,59 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import Nav from './nav'
 import Loader from './loader'
-import Social from './social'
-import Email from './email'
 import Footer from './footer'
 import { GlobalStyle, theme } from '@styles'
-import ParticlesAnimation from './animations/ParticlesAnimation/Particles'
+import SlidingButton from './animations/SlidingButton'
+import Icon from './icons/icon'
+import { email } from '../utils/config'
+import FadeIn from './animations/FadeIn'
+
 
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 `
+const Wrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+`
+const useElementOnScreen = (options) => {
+  const containerRef = useRef()
+  const [isVisible, setIsVisible] = useState(false)
+
+  const callBackFunction = (entries) => {
+    const [entry] = entries
+    setIsVisible(entry.isIntersecting)
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callBackFunction, options)
+    let observerRefValue = null
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+      observerRefValue = containerRef.current
+    }
+
+    return () => {
+      if (observerRefValue) observer.unobserve(observerRefValue)
+    }
+  }, [containerRef, options, callBackFunction])
+
+  return [containerRef, isVisible]
+}
 
 const Layout = ({ children, location }) => {
   const isHome = location?.pathname === '/'
   const [isLoading, setIsLoading] = useState(isHome)
+  const [containerRef, isVisible] = useElementOnScreen({
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.4,
+  })
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
@@ -48,28 +85,59 @@ const Layout = ({ children, location }) => {
     }
 
     handleExternalLinks()
-  }, [isLoading])
+  }, [isLoading, location.hash])
 
   return (
-    <div id="root">
+    <div id='root'>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <a className="skip-to-content" href="#content">
+        <a className='skip-to-content' href='#content'>
           Skip to Content
         </a>
         {isLoading && isHome ? (
           <Loader finishLoading={() => setIsLoading(false)} />
         ) : (
-          <StyledContent>
-            <Nav isHome={isHome} />
-            <Social isHome={isHome} />
-            <Email isHome={isHome} />
 
-            <div id="content">
+          <StyledContent>
+            <FadeIn delay={700} duration={1000}>
+              <Nav isHome={isHome} />
+            </FadeIn>
+            <FadeIn delay={3000} duration={1000}>
+              <Wrapper>
+                <SlidingButton side={'left'} leftPosition={'40%'} topPosition={'110px'} visible={isVisible}>
+                  <a style={{ width: '30px', height: '30px' }} href={`mailto:${email}`}><Icon name={'Envelope'} /></a>
+                </SlidingButton>
+                <SlidingButton side={'right'} leftPosition={'45%'} topPosition={'80px'}
+                               visible={isVisible}><a style={{ width: '30px', height: '30px' }}
+                                                      href={'https://twitter.com/alanhabib10'}
+                                                      aria-label={'Twitter'} target='_blank' rel='noreferrer'>
+                  <Icon name={'Twitter'} /></a></SlidingButton>
+                <SlidingButton side={'right'} leftPosition={'50%'} topPosition={'150px'}
+                               visible={isVisible}> <a style={{ width: '30px', height: '30px' }}
+                                                       href={'https://www.linkedin.com/in/alan-habib-43a5b9167/'}
+                                                       aria-label={'Linkedin'} target='_blank' rel='noreferrer'>
+                  <Icon name={'Linkedin'} /></a></SlidingButton>
+                <SlidingButton side={'right'} leftPosition={'55%'} topPosition={'230px'}
+                               visible={isVisible}><a style={{ width: '30px', height: '30px' }}
+                                                      href={'https://calendly.com/alanhabib/15min'}
+                                                      aria-label={'Calendly'} target='_blank' rel='noreferrer'>
+                  <Icon name={'Calendly'} /></a></SlidingButton>
+              </Wrapper>
+            </FadeIn>
+
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '200px',
+              }}
+              ref={containerRef}
+            />
+            <div id='content'>
               {children}
               <Footer />
             </div>
           </StyledContent>
+
         )}
       </ThemeProvider>
     </div>
