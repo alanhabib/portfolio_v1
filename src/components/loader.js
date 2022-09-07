@@ -27,6 +27,7 @@ const StyledLoader = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     svg {
       display: flex;
       justify-content: center;
@@ -35,6 +36,7 @@ const StyledLoader = styled.div`
       margin: 0 auto;
       fill: none;
       user-select: none;
+
       #B {
         opacity: 0;
       }
@@ -56,7 +58,7 @@ const Loader = ({ finishLoading }) => {
       .add({
         targets: '#logo path',
         delay: 300,
-        duration: 1500,
+        duration: 800,
         easing: 'easeInOutQuart',
         strokeDashoffset: [anime.setDashoffset, 0],
       })
@@ -90,9 +92,9 @@ const Loader = ({ finishLoading }) => {
   }, [])
 
   return (
-    <StyledLoader className="loader" isMounted={isMounted}>
+    <StyledLoader className='loader' isMounted={isMounted}>
       <Helmet bodyAttributes={{ class: `hidden` }} />
-      <div className="logo-wrapper">
+      <div className='logo-wrapper'>
         <AnimatedCircle text={<CircleText>AH</CircleText>} />
       </div>
     </StyledLoader>
