@@ -9,8 +9,6 @@ import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion'
 import AnimatedLetters from '../animations/AnimatedLetters'
 
 const StyledJobsSection = styled.section`
-  // max-width: 700px;
-
   .inner {
     display: flex;
 
@@ -56,6 +54,7 @@ const StyledTabList = styled.div`
         margin-left: 25px;
       }
     }
+
     &:last-of-type {
       @media (max-width: 600px) {
         padding-right: 50px;
@@ -109,9 +108,7 @@ const StyledHighlight = styled.div`
   height: var(--tab-height);
   border-radius: var(--border-radius);
   background: var(--green);
-  transform: translateY(
-    calc(${({ activeTabId }) => activeTabId} * var(--tab-height))
-  );
+  transform: translateY(calc(${({ activeTabId }) => activeTabId} * var(--tab-height)));
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
 
@@ -122,9 +119,7 @@ const StyledHighlight = styled.div`
     max-width: var(--tab-width);
     height: 2px;
     margin-left: 50px;
-    transform: translateX(
-      calc(${({ activeTabId }) => activeTabId} * var(--tab-width))
-    );
+    transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
   }
   @media (max-width: 480px) {
     margin-left: 25px;
@@ -181,7 +176,7 @@ const DATA = [
     company: 'Quinyx',
     title: 'Frontend Engineer',
     text: [
-      "Developing a SaaS platform with React/TypeScript that is being used by many big companies, such as Mc'Donalds, Burger King, SATS and more",
+      'Developing a SaaS platform with React/TypeScript that is being used by many big companies, such as Mc\'Donalds, Burger King, SATS and more',
       'Working with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, React, Lokalise and Storybook. We use these frontend development tools to build complex scheduling solutions and exceptional digital experiences.',
       'Communicate with multi-disciplinary teams of engineers, designers and product managers on a daily basis',
     ],
@@ -285,14 +280,14 @@ const Jobs = () => {
   }
 
   return (
-    <StyledJobsSection id="jobs" ref={revealContainer}>
-      <h2 className="numbered-heading">
+    <StyledJobsSection id='jobs' ref={revealContainer}>
+      <h2 className='numbered-heading'>
         <AnimatedLetters strArray={'Where I’ve Worked'.split('')} idx={15} />
       </h2>
-      <div className="inner">
+      <div className='inner'>
         <StyledTabList
-          role="tablist"
-          aria-label="Job tabs"
+          role='tablist'
+          aria-label='Job tabs'
           onKeyDown={(e) => onKeyDown(e)}
         >
           {DATA?.map(({ company }, i) => {
@@ -303,7 +298,7 @@ const Jobs = () => {
                 onClick={() => setActiveTabId(i)}
                 ref={(el) => (tabs.current[i] = el)}
                 id={`tab-${i}`}
-                role="tab"
+                role='tab'
                 tabIndex={activeTabId === i ? '0' : '-1'}
                 aria-selected={activeTabId === i ? true : false}
                 aria-controls={`panel-${i}`}
@@ -322,11 +317,11 @@ const Jobs = () => {
                 key={i}
                 in={activeTabId === i}
                 timeout={250}
-                classNames="fade"
+                classNames='fade'
               >
                 <StyledTabPanel
                   id={`panel-${i}`}
-                  role="tabpanel"
+                  role='tabpanel'
                   tabIndex={activeTabId === i ? '0' : '-1'}
                   aria-labelledby={`tab-${i}`}
                   aria-hidden={activeTabId !== i}
@@ -334,20 +329,21 @@ const Jobs = () => {
                 >
                   <h3>
                     <span>{title}</span>
-                    <span className="company">
+                    <span className='company'>
                       &nbsp;@
-                      <a href={url} className="inline-link">
+                      <a href={url} className='inline-link'>
                         {company}
                       </a>
                     </span>
                   </h3>
-                  <p className="location">{date}</p>
-                  <div className="range">{location}</div>
-                  <ul className="skills-list">
+                  <p className='location'>{date}</p>
+                  <div className='range'>{location}</div>
+                  <ul className='skills-list'>
                     {text.map((skill, i) => (
                       <li key={i}>{skill}</li>
                     ))}
-                  </ul>{' '}
+                  </ul>
+                  {' '}
                 </StyledTabPanel>
               </CSSTransition>
             )

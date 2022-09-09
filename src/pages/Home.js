@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Layout, Hero, About, Jobs, Featured } from '../components'
-import Contact from './Contact/contact'
+import Form from '../components/Form'
 
 const StyledMainContainer = styled.main`
   counter-reset: section;
@@ -15,7 +15,7 @@ const Home = ({ location }) => (
         <About id='about' />
         <Jobs id='jobs' />
         <Featured id='projects' />
-        <Contact id='contact' />
+        <Form id='contact' />
       </StyledMainContainer>
     </Layout>
   </div>
