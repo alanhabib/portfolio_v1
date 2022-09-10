@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { navDelay, loaderDelay } from '../../utils'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import BlobAnimation from '../animations/BlobAnimation'
-import FontAnimation from '../animations/FontAnimation'
+import Animated from '../animations/AnimatedLetters/animated'
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme?.mixins?.flexCenter};
@@ -68,9 +68,7 @@ const Hero = () => {
     />
   )
   const three = (
-    <h3 className='big-heading'>
-      <FontAnimation copy={'I do Web Development'.split('')} role='heading' />
-    </h3>
+    <Animated />
   )
   const four = (
     <>

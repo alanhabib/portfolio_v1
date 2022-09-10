@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { FaMapMarkedAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa'
-import Icon from '../icons/icon'
 import AnimatedLetters from '../animations/AnimatedLetters'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import sr from '../../utils/sr'
 import { srConfig } from '../../utils/config'
 import emailjs from '@emailjs/browser'
+import { useForm } from 'react-hook-form'
+
 
 const MainContainer = styled.section`
   display: flex;
@@ -169,8 +170,8 @@ const ContactInfo = styled.div`
     width: 100%;
     height: 100%;
     flex-direction: row;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
   }
 
   @media (max-width: 600px) {
@@ -290,7 +291,7 @@ const ContactForm = styled.div`
     padding: 12px;
     color: var(--peach);
     font-weight: 800;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 
     &:hover {
       background: var(--peach);
@@ -309,6 +310,11 @@ const ContactForm = styled.div`
     width: 100%;
   }
 
+  .email-link {
+    ${({ theme }) => theme?.mixins?.bigButton};
+    margin-top: 50px;
+  }
+
   @media (max-width: 1200px) {
     position: relative;
     width: calc(100% - 350px);
@@ -321,8 +327,8 @@ const ContactForm = styled.div`
   @media (max-width: 991px) {
     width: 100%;
     height: auto;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
   }
 
   @media (max-width: 600px) {
@@ -332,34 +338,33 @@ const ContactForm = styled.div`
 
 
 function FormSignup() {
-  const form = useRef()
   const revealContainer = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
-  const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    message: '',
-    number: '',
-  })
-  const [status, setStatus] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    emailjs.send('contact_service', 'contact_form', values, '1U58TxmFctiLN9p7O')
+  const { register, formState: { errors }, handleSubmit, reset } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      number: '',
+      message: '',
+    },
+  })
+  const onSubmit = (data) => {
+    emailjs.send('contact_service', 'contact_form', data, '1U58TxmFctiLN9p7O')
       .then(response => {
-        setValues({
-          firstName: '',
-          lastName: '',
+        setStatus(response?.text)
+        reset({
+          name: '',
           email: '',
           number: '',
           message: '',
         })
-        setStatus(response?.text)
       }, error => {
         setStatus(error)
       })
   }
+
+  const [status, setStatus] = useState('')
 
   useEffect(() => {
     if (status === 'SUCCESS') {
@@ -369,13 +374,6 @@ function FormSignup() {
       }, 3000)
     }
   }, [status])
-
-  const handleChange = (e) => {
-    setValues(values => ({
-      ...values,
-      [e.target.name]: e.target.value,
-    }))
-  }
 
 
   useEffect(() => {
@@ -404,20 +402,11 @@ function FormSignup() {
                 <span>Folkparksvägen 54, Stockholm</span>
               </li>
               <li>
-                <FaEnvelope style={{ color: `var(--lightest-slate)`, width: '30px', height: '30px' }} />
-                <span>dalanhabib@gmail.com</span>
-              </li>
-              <li>
                 <FaPhoneAlt style={{ color: `var(--lightest-slate)`, width: '30px', height: '30px' }} />
-                <span>+46707801413</span>
+                <a href='tel:+46707801413'>+46707801413</a>
               </li>
             </ul>
           </div>
-          <ul className='sci'>
-            <li><Icon name='Twitter' style={{ color: 'white', width: '30px', height: '30px' }} /></li>
-            <li><Icon name='Linkedin' style={{ color: 'white', width: '30px', height: '30px' }} /></li>
-            <li><Icon name='Calendly' style={{ color: 'white', width: '30px', height: '30px' }} /></li>
-          </ul>
         </ContactInfo>
         <ContactForm>
           <h2>Send a Message</h2>
@@ -425,27 +414,37 @@ function FormSignup() {
             Want to work together or have any questions? Whether you have a question
             or just want to say hi, I’ll try my best to get back to you!
           </p>
-          <form className={'formBox'} ref={form} onSubmit={handleSubmit}>
+          <form className={'formBox'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'inputBox w50'}>
-              <input value={values.firstName} onChange={handleChange} name='firstName' type={'text'} required />
-              <span>First Name</span>
+              <input {...register('name', { required: true })} name='name' />
+              <span>Name</span>
+              <p style={{ color: 'red', marginTop: '6px' }}>{errors.name?.type === 'required' && 'Name is required'}</p>
             </div>
+
             <div className={'inputBox w50'}>
-              <input value={values.lastName} onChange={handleChange} name='lastName' type={'text'} required />
-              <span>Last Name</span>
-            </div>
-            <div className={'inputBox w50'}>
-              <input value={values.email} onChange={handleChange} name='email' type='email'
-                     required />
+              <input {...register('email', { required: true })} name='email' />
               <span>Email address</span>
+              <p style={{
+                color: 'red',
+                marginTop: '6px',
+              }}>{errors.email?.type === 'required' && 'Email is required'}</p>
             </div>
+
             <div className={'inputBox w50'}>
-              <input value={values.number} onChange={handleChange} name='number' type={'number'} required />
+              <input {...register('number', { required: true })} name='number' type='number' />
               <span>Mobile number</span>
+              <p style={{
+                color: 'red',
+                marginTop: '6px',
+              }}>{errors.number?.type === 'required' && 'Number is required'}</p>
             </div>
             <div className={'inputBox w100'}>
-              <textarea value={values.message} onChange={handleChange} name='message' required />
+              <textarea {...register('message', { required: true })} name='message' />
               <span>Write your message here...</span>
+              <p style={{
+                color: 'red',
+                marginTop: '6px',
+              }}>{errors.message?.type === 'required' && 'Message is required'}</p>
             </div>
             <div className={'inputBox w100'}>
               <input type={'submit'} value={'Send'} />
