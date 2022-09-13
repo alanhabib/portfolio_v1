@@ -8,6 +8,7 @@ import SlidingButton from './animations/SlidingButton'
 import Icon from './icons/icon'
 import { email } from '../utils/config'
 import FadeIn from './animations/FadeIn'
+import useElementOnScreen from '../hooks/useElementOnScreen'
 
 
 const StyledContent = styled.div`
@@ -21,30 +22,6 @@ const Wrapper = styled.div`
   }
 
 `
-const useElementOnScreen = (options) => {
-  const containerRef = useRef()
-  const [isVisible, setIsVisible] = useState(false)
-
-  const callBackFunction = (entries) => {
-    const [entry] = entries
-    setIsVisible(entry.isIntersecting)
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(callBackFunction, options)
-    let observerRefValue = null
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-      observerRefValue = containerRef.current
-    }
-
-    return () => {
-      if (observerRefValue) observer.unobserve(observerRefValue)
-    }
-  }, [containerRef, options, callBackFunction])
-
-  return [containerRef, isVisible]
-}
 
 const Layout = ({ children, location }) => {
   const isHome = location?.pathname === '/'
@@ -91,7 +68,7 @@ const Layout = ({ children, location }) => {
     <div id='root'>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <a className='skip-to-content' href='#content'>
+        <a className='skip-to-content' href='#about'>
           Skip to Content
         </a>
         {isLoading && isHome ? (
@@ -134,7 +111,7 @@ const Layout = ({ children, location }) => {
             />
             <div id='content'>
               {children}
-              <Footer />
+              {/*<Footer />*/}
             </div>
           </StyledContent>
 

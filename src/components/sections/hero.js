@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { navDelay, loaderDelay } from '../../utils'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import BlobAnimation from '../animations/BlobAnimation'
-import Animated from '../animations/AnimatedLetters/animated'
+import Typed from 'react-typed'
+
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme?.mixins?.flexCenter};
@@ -68,7 +69,19 @@ const Hero = () => {
     />
   )
   const three = (
-    <Animated />
+    <h3 style={{ color: '#ccd6f6' }} className='big-heading'>
+      <p>I work with:</p>
+      <Typed
+        strings={[
+          'Software engineering',
+          'Frontend development',
+          'Application development',
+        ]}
+        typeSpeed={150}
+        backSpeed={100}
+        loop
+      />
+    </h3>
   )
   const four = (
     <>
