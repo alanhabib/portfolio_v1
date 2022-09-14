@@ -18,7 +18,6 @@ const load = keyframes`
     transform: rotate(360deg);
   }
 `
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -27,7 +26,6 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `
-
 
 const ButtonContainer = styled.button`
   font-family: inherit;
@@ -81,7 +79,6 @@ const Loader = styled.div`
   border: 4px solid var(--peach);
   border-radius: 50px;
   position: relative;
-  opacity: 0;
   animation: ${fadeIn} 0.5s linear forwards;
 
   span {

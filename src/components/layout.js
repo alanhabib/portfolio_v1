@@ -63,7 +63,7 @@ const Layout = ({ children, location }) => {
 
     handleExternalLinks()
   }, [isLoading, location.hash])
-
+  
   return (
     <div id='root'>
       <ThemeProvider theme={theme}>
