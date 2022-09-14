@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { FaMapMarkedAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa'
+import { FaMapMarkedAlt, FaPhoneAlt } from 'react-icons/fa'
 import AnimatedLetters from '../animations/AnimatedLetters'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import sr from '../../utils/sr'
@@ -422,13 +422,13 @@ function FormSignup() {
           </p>
           <form className={'formBox'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'inputBox w50'}>
-              <input {...register('name', { required: true })} name='name' />
+              <input disabled={success} {...register('name', { required: true })} name='name' />
               <span>Name</span>
               <p style={{ color: 'red', marginTop: '6px' }}>{errors.name?.type === 'required' && 'Name is required'}</p>
             </div>
 
             <div className={'inputBox w50'}>
-              <input {...register('email', { required: true })} name='email' />
+              <input disabled={success} {...register('email', { required: true })} name='email' />
               <span>Email address</span>
               <p style={{
                 color: 'red',
@@ -437,7 +437,7 @@ function FormSignup() {
             </div>
 
             <div className={'inputBox w50'}>
-              <input {...register('number', { required: true })} name='number' type='number' />
+              <input disabled={success} {...register('number', { required: true })} name='number' type='number' />
               <span>Mobile number</span>
               <p style={{
                 color: 'red',
@@ -445,7 +445,7 @@ function FormSignup() {
               }}>{errors.number?.type === 'required' && 'Number is required'}</p>
             </div>
             <div className={'inputBox w100'}>
-              <textarea {...register('message', { required: true })} name='message' />
+              <textarea disabled={success} {...register('message', { required: true })} name='message' />
               <span>Write your message here...</span>
               <p style={{
                 color: 'red',
@@ -453,7 +453,7 @@ function FormSignup() {
               }}>{errors.message?.type === 'required' && 'Message is required'}</p>
             </div>
             <div className={'w100'}>
-              <Button success={success} isLoading={isLoading} type={'submit'} />
+              <Button disabled={success} success={success} isLoading={isLoading} type={'submit'} />
             </div>
           </form>
         </ContactForm>

@@ -123,9 +123,9 @@ const Loader = styled.div`
   }
 `
 
-const Button = ({ isLoading, success }) => {
+const Button = ({ isLoading, success, disabled }) => {
   return (
-    <ButtonContainer>
+    <ButtonContainer disabled={disabled}>
       {success ? <div>Success</div> : <>
         {
           isLoading ? <Loader className='loader'>
