@@ -9,6 +9,7 @@ import Icon from './icons/icon'
 import { email } from '../utils/config'
 import FadeIn from './animations/FadeIn'
 import useElementOnScreen from '../hooks/useElementOnScreen'
+import { Link } from 'react-scroll'
 
 
 const StyledContent = styled.div`
@@ -26,7 +27,9 @@ const Wrapper = styled.div`
 const Layout = ({ children, location }) => {
   const isHome = location?.pathname === '/'
   const [isLoading, setIsLoading] = useState(isHome)
-  const [containerRef, isVisible] = useElementOnScreen({
+  const {
+    containerRef, isVisible,
+  } = useElementOnScreen({
     root: null,
     rootMargin: '0px',
     threshold: 0.4,
@@ -63,7 +66,7 @@ const Layout = ({ children, location }) => {
 
     handleExternalLinks()
   }, [isLoading, location.hash])
-  
+
   return (
     <div id='root'>
       <ThemeProvider theme={theme}>
@@ -82,7 +85,17 @@ const Layout = ({ children, location }) => {
             <FadeIn delay={3000} duration={1000}>
               <Wrapper>
                 <SlidingButton side={'left'} leftPosition={'40%'} topPosition={'110px'} visible={isVisible}>
-                  <a style={{ width: '30px', height: '30px' }} href={`mailto:${email}`}><Icon name={'Envelope'} /></a>
+                  <Link
+                    activeClass='active'
+                    to='contact'
+                    spy={true}
+                    smooth={true}
+                    offset={-60}
+                    duration={500}
+                    style={{ color: '#fff', width: '30px', height: '30px' }}
+                  >
+                    <Icon name={'Envelope'} />
+                  </Link>
                 </SlidingButton>
                 <SlidingButton side={'right'} leftPosition={'45%'} topPosition={'80px'}
                                visible={isVisible}><a style={{ width: '30px', height: '30px' }}
@@ -111,7 +124,7 @@ const Layout = ({ children, location }) => {
             />
             <div id='content'>
               {children}
-              {/*<Footer />*/}
+              <Footer />
             </div>
           </StyledContent>
 

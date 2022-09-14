@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 import { FaMapMarkedAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa'
 import AnimatedLetters from '../animations/AnimatedLetters'
@@ -323,6 +323,7 @@ const ContactForm = styled.div`
     padding: 40px;
     height: 100%;
     box-shadow: none;
+
   }
 
   @media (max-width: 991px) {
@@ -336,7 +337,6 @@ const ContactForm = styled.div`
     padding: 25px;
   }
 `
-
 
 function FormSignup() {
   const revealContainer = useRef(null)

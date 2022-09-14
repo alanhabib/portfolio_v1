@@ -22,7 +22,7 @@ const useElementOnScreen = (options) => {
     }
   }, [containerRef, options, callBackFunction])
 
-  return [containerRef, isVisible]
+  return { containerRef, isVisible }
 }
 
 export default useElementOnScreen

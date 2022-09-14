@@ -5,6 +5,7 @@ import { navDelay, loaderDelay } from '../../utils'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import BlobAnimation from '../animations/BlobAnimation'
 import Typed from 'react-typed'
+import AnimatedLetters from '../animations/AnimatedLetters'
 
 
 const StyledHeroSection = styled.section`
@@ -69,19 +70,23 @@ const Hero = () => {
     />
   )
   const three = (
-    <h3 style={{ color: '#ccd6f6' }} className='big-heading'>
-      <p>I work with:</p>
-      <Typed
-        strings={[
-          'Software engineering',
-          'Frontend development',
-          'Application development',
-        ]}
-        typeSpeed={150}
-        backSpeed={100}
-        loop
-      />
-    </h3>
+    <>
+      <h2 className='medium-heading'>
+        <AnimatedLetters strArray={'My superpowers:'.split('')} idx={15} />
+      </h2>
+      <h3 style={{ color: '#ccd6f6' }} className='medium-heading'>
+        <Typed
+          strings={[
+            'Software engineering',
+            'Frontend development',
+            'Application development',
+          ]}
+          typeSpeed={150}
+          backSpeed={100}
+          loop
+        />
+      </h3>
+    </>
   )
   const four = (
     <>
