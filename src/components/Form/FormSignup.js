@@ -7,6 +7,7 @@ import sr from '../../utils/sr'
 import { srConfig } from '../../utils/config'
 import emailjs from '@emailjs/browser'
 import { useForm } from 'react-hook-form'
+import Button from '../animations/Button'
 
 
 const MainContainer = styled.section`
@@ -340,6 +341,8 @@ const ContactForm = styled.div`
 function FormSignup() {
   const revealContainer = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
+  const [isLoading, setIsLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -350,6 +353,7 @@ function FormSignup() {
     },
   })
   const onSubmit = (data) => {
+    setIsLoading(true)
     emailjs.send('contact_service', 'contact_form', data, '1U58TxmFctiLN9p7O')
       .then(response => {
         setStatus(response?.text)
@@ -359,6 +363,8 @@ function FormSignup() {
           number: '',
           message: '',
         })
+        setIsLoading(false)
+        setSuccess(true)
       }, error => {
         setStatus(error)
       })
@@ -446,8 +452,8 @@ function FormSignup() {
                 marginTop: '6px',
               }}>{errors.message?.type === 'required' && 'Message is required'}</p>
             </div>
-            <div className={'inputBox w100'}>
-              <input type={'submit'} value={'Send'} />
+            <div className={'w100'}>
+              <Button success={success} isLoading={isLoading} type={'submit'} />
             </div>
           </form>
         </ContactForm>
