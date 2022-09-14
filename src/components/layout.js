@@ -8,6 +8,8 @@ import SlidingButton from './animations/SlidingButton'
 import Icon from './icons/icon'
 import { email } from '../utils/config'
 import FadeIn from './animations/FadeIn'
+import useElementOnScreen from '../hooks/useElementOnScreen'
+import { Link } from 'react-scroll'
 
 
 const StyledContent = styled.div`
@@ -21,35 +23,13 @@ const Wrapper = styled.div`
   }
 
 `
-const useElementOnScreen = (options) => {
-  const containerRef = useRef()
-  const [isVisible, setIsVisible] = useState(false)
-
-  const callBackFunction = (entries) => {
-    const [entry] = entries
-    setIsVisible(entry.isIntersecting)
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(callBackFunction, options)
-    let observerRefValue = null
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-      observerRefValue = containerRef.current
-    }
-
-    return () => {
-      if (observerRefValue) observer.unobserve(observerRefValue)
-    }
-  }, [containerRef, options, callBackFunction])
-
-  return [containerRef, isVisible]
-}
 
 const Layout = ({ children, location }) => {
   const isHome = location?.pathname === '/'
   const [isLoading, setIsLoading] = useState(isHome)
-  const [containerRef, isVisible] = useElementOnScreen({
+  const {
+    containerRef, isVisible,
+  } = useElementOnScreen({
     root: null,
     rootMargin: '0px',
     threshold: 0.4,
@@ -91,7 +71,7 @@ const Layout = ({ children, location }) => {
     <div id='root'>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <a className='skip-to-content' href='#content'>
+        <a className='skip-to-content' href='#about'>
           Skip to Content
         </a>
         {isLoading && isHome ? (
@@ -105,7 +85,17 @@ const Layout = ({ children, location }) => {
             <FadeIn delay={3000} duration={1000}>
               <Wrapper>
                 <SlidingButton side={'left'} leftPosition={'40%'} topPosition={'110px'} visible={isVisible}>
-                  <a style={{ width: '30px', height: '30px' }} href={`mailto:${email}`}><Icon name={'Envelope'} /></a>
+                  <Link
+                    activeClass='active'
+                    to='contact'
+                    spy={true}
+                    smooth={true}
+                    offset={-60}
+                    duration={500}
+                    style={{ color: '#fff', width: '30px', height: '30px' }}
+                  >
+                    <Icon name={'Envelope'} />
+                  </Link>
                 </SlidingButton>
                 <SlidingButton side={'right'} leftPosition={'45%'} topPosition={'80px'}
                                visible={isVisible}><a style={{ width: '30px', height: '30px' }}

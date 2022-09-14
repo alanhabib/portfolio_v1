@@ -8,7 +8,6 @@ import { FaHandPeace } from 'react-icons/fa'
 import ParticlesAnimation from '../../components/animations/ParticlesAnimation/Particles'
 
 const StyledContactSection = styled.section`
-  // max-width: 600px;
   margin: 0 auto 100px;
   text-align: center;
   @media (max-width: 768px) {
@@ -56,10 +55,10 @@ const Contact = () => {
   }, [])
 
   return (
-    <StyledContactSection id="contact" ref={revealContainer}>
+    <StyledContactSection id='contact' ref={revealContainer}>
       <ParticlesAnimation />
-      <h2 className="numbered-heading overline">What’s Next?</h2>
-      <h2 className="title">
+      <h2 className='numbered-heading overline'>What’s Next?</h2>
+      <h2 className='title'>
         <AnimatedLetters strArray={'Get In Touch'.split('')} idx={15} />
       </h2>
 
@@ -68,7 +67,7 @@ const Contact = () => {
         or just want to say hi, I’ll try my best to get back to you!
       </p>
 
-      <a className="email-link" href={`mailto:${email}`}>
+      <a className='email-link' href={`mailto:${email}`}>
         Say Hello
         <FaHandPeace
           style={{ width: '26px', height: '26px', marginLeft: '12px' }}

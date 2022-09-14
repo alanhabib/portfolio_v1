@@ -25,6 +25,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
     "react-leaflet": "^4.0.1",
     "react-loaders": "^3.0.1",
@@ -32,13 +33,14 @@
     "react-scroll": "^1.8.7",
     "react-transition-group": "^4.4.5",
     "react-tsparticles": "^2.2.2",
+    "react-typed": "^1.2.0",
     "scrollreveal": "^4.0.9",
     "styled-components": "^5.3.5",
     "tsparticles": "^2.2.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "node server.js",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

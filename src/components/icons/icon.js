@@ -18,40 +18,40 @@ import {
   FaRegEnvelope,
 } from 'react-icons/fa'
 
-const Icon = ({ name }) => {
+const Icon = ({ name, style }) => {
   switch (name) {
     case 'AppStore':
-      return <FaApple />
+      return <FaApple style={style} />
     case 'Aws':
-      return <FaAws />
+      return <FaAws style={style} />
     case 'Envelope':
-      return <FaRegEnvelope />
+      return <FaRegEnvelope style={style} />
     case 'Bookmark':
-      return <FaBookmark />
+      return <FaBookmark style={style} />
     case 'Calendly':
-      return <FaRegCalendarAlt />
+      return <FaRegCalendarAlt style={style} />
     case 'Codepen':
-      return <FaCodepen />
+      return <FaCodepen style={style} />
     case 'External':
-      return <FaExternalLinkAlt />
+      return <FaExternalLinkAlt style={style} />
     case 'Folder':
-      return <FaRegFolder />
+      return <FaRegFolder style={style} />
     case 'GitHub':
-      return <FaGithub />
+      return <FaGithub style={style} />
     case 'Instagram':
-      return <FaInstagram />
+      return <FaInstagram style={style} />
     case 'Linkedin':
-      return <FaLinkedinIn />
+      return <FaLinkedinIn style={style} />
     case 'Loader':
-      return <FaCloudDownloadAlt />
+      return <FaCloudDownloadAlt style={style} />
     case 'PlayStore':
-      return <FaGooglePlay />
+      return <FaGooglePlay style={style} />
     case 'Star':
-      return <FaRegStar />
+      return <FaRegStar style={style} />
     case 'Twitter':
-      return <FaTwitterSquare />
+      return <FaTwitterSquare style={style} />
     default:
-      return <FaExternalLinkAlt />
+      return <FaExternalLinkAlt style={style} />
   }
 }
 

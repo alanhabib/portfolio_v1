@@ -2,9 +2,13 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const rotateCW = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-  `
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`
 
 const PageContainer = styled.div`
   display: flex;
@@ -12,7 +16,6 @@ const PageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  }
 `
 const Outer = styled.div`
   position: absolute;
@@ -24,11 +27,11 @@ const Outer = styled.div`
   border-right: 4px solid var(--peach);
   height: 50px;
   width: 50px;
-  animation: ${rotateCW} 16s infinite linear;
+  animation: ${rotateCW} 36s infinite linear;
 `
 
 const Reverse = styled(Outer)`
-  animation: ${rotateCW} 14s infinite linear;
+  animation: ${rotateCW} 36s infinite linear;
   animation-direction: reverse;
 `
 const AnimatedCircle = ({ text = '' }) => {
